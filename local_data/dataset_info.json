@@ -1,0 +1,148 @@
+{
+    "sharegpt4": {
+        "hf_hub_url": "shibing624/sharegpt_gpt4",
+        "ms_hub_url": "AI-ModelScope/sharegpt_gpt4",
+        "formatting": "sharegpt"
+    },
+    "alpace_gpt4_zh_retain":{
+    "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/alpaca_gpt4_zh_retain.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "cnewsum": {
+        "file_name": "/home/jovyan/zhubin/DATA/train_data/zb/cnewsum_train.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "csl_9w": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/csl_9w_train_part0.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "lcsts_5w": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/lcsts_5w_train_part0.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "vcsum_headlines": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/vcsum_headlines_train_part0.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "firefly_summary_part": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/firefly_1_1M_summary_4_5w_train.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "COIG_PC_core_summary_part": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/COIG_PC_core_summary_train.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "baichuan_30w": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/baichuan30w_sharegpt_train.json",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "conversations"
+        }
+    },
+    "baichuan_test": {
+        "file_name":"/home/jovyan/zhubin/code/LLaMA-Factory/data/baichuan_multi_test.json",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "conversations"
+        }
+    },
+    "conversation_abstract_v1_part0":{
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/conversation_gpt4_train_v1_part0.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+
+    },
+    "union_conversations":{
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/union_conversation_train_v0.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "dialogsum": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/dialogsum_train.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+
+    "csds_dialogue": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/csds_dialogue_train_v0.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+
+    "alimeeting": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/alimeeting_train_v0.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "docsum": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/doc_sum_qwen72b_train.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "infinity_instruct": {
+        "file_name":"/home/jovyan/zhubin/DATA/raw_data/hf_data/BAAI/Infinity-Instruct/train.jsonl",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "conversations"
+        }
+    }
+}

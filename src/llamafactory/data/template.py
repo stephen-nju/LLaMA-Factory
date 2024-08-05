@@ -904,3 +904,19 @@ _register_template(
     format_user=StringFormatter(slots=["<human>:{{content}}\n<bot>:"]),
     format_separator=EmptyFormatter(slots=["\n"]),
 )
+
+_register_template(
+    name="honor",
+    format_user=StringFormatter(slots=["<TOKENS_UNUSED_1>{{content}}<TOKENS_UNUSED_2>"]),
+    format_assistant=StringFormatter(slots=["{{content}}", {"eos_token"}]),
+    default_system="<s>",
+    format_separator=EmptyFormatter(slots=[""]),
+
+)
+
+
+# _register_template(
+#     name="llama2_honor",
+#     format_user=StringFormatter(slots=[{"bos_token"},"<TOKENS_UNUSED_1>{{content}}<TOKENS_UNUSED_2>"]),
+#     format_system=EmptyFormatter(),
+# )
