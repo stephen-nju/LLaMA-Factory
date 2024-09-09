@@ -13,8 +13,8 @@
             "history": ""
         }
     },
-    "cnewsum": {
-        "file_name": "/home/jovyan/zhubin/DATA/train_data/zb/cnewsum_train.json",
+    "cnewsum_5w": {
+        "file_name": "/home/jovyan/zhubin/DATA/train_data/zb/cnewsum_train_shuffle_5w.json",
         "columns": {
             "prompt": "instruction",
             "query": "input",
@@ -91,8 +91,17 @@
         }
 
     },
-    "union_conversations":{
-        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/union_conversation_train_v0.json",
+    "union_conversations_v2":{
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/union_conversations_train_v2.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+    "union_conversations_v3":{
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/union_conversations_train_v3.json",
         "columns": {
             "prompt": "instruction",
             "query": "input",
@@ -140,6 +149,44 @@
     },
     "infinity_instruct": {
         "file_name":"/home/jovyan/zhubin/DATA/raw_data/hf_data/BAAI/Infinity-Instruct/train.jsonl",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "conversations"
+        }
+    },
+    "union_conversations_dev_v2":{
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/dev/union_conversations_dev_iio_lff_v2.json",
+        "columns": {
+            "prompt": "instruction",
+            "query": "input",
+            "response": "output",
+            "history": ""
+        }
+    },
+
+    "baichuan_30w_less_top0_05": {
+        "file_name":"/home/jovyan/zhubin/code/selected_data/baichuan30w_shartgpt_train_less_top0.05.json",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "conversations"
+        }
+    },
+    "baichuan_30w_less_top0_2": {
+        "file_name":"/home/jovyan/zhubin/code/selected_data/baichuan30w_shartgpt_train_less_top0.2.json",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "conversations"
+        }
+    },
+    "baichuan_30w_lcsts_less_top0_05": {
+        "file_name":"/home/jovyan/zhubin/code/selected_data/baichuan30w_shartgpt_train_lscts_less_top0.05.json",
+        "formatting": "sharegpt",
+        "columns": {
+            "messages": "conversations"
+        }
+    },
+    "baichuan_30w_lcsts_less_top0_2": {
+        "file_name":"/home/jovyan/zhubin/code/selected_data/baichuan30w_shartgpt_train_lscts_less_top0.2.json",
         "formatting": "sharegpt",
         "columns": {
             "messages": "conversations"

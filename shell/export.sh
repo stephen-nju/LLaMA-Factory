@@ -1,4 +1,4 @@
-export PROJECT_PATH=/home/jovyan/zhubin/LLaMA-Factory/
+export PROJECT_PATH=/home/jovyan/zhubin/code/LLaMA-Factory/
 cd ${PROJECT_PATH}
 # CUDA_VISIBLE_DEVICES=7 python src/export_model.py \
 #     --model_name_or_path /data/SHARE/MODELS/XVERSE-13B/ \

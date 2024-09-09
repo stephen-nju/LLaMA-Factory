@@ -1,13 +1,13 @@
-PROJECT_PATH=/home/jovyan/zhubin/LLaMA-Factory/
+PROJECT_PATH=/home/jovyan/zhubin/code/LLaMA-Factory/
 cd ${PROJECT_PATH}
 
-CUDA_VISIBLE_DEVICES=7 python src/train_bash.py \
+CUDA_VISIBLE_DEVICES=7 python src/train.py \
 	--stage sft \
-	--model_name_or_path /home/jovyan/zhubin/saved_checkpoint/base_qwen1_5B_honor_lora_lr5e5_epoch2/ \
-	--resize_vocab true \
+	--eval_dataset union_conversations_dev_v2 \
+	--overwrite_cache \
+	--model_name_or_path /home/jovyan/zhubin/saved_checkpoint/magiclm_nano_conv_sum_v2_full_lr2e5_3epoch_bs4/ \
 	--do_predict \
-	--dataset cnewsum_test \
+	--predict_with_generate \
 	--template honor \
-	--finetuning_type lora \
-	--output_dir /home/jovyan/zhubin/saved_output/abstract/preds/ \
-	--per_device_eval_batch_size 4 \
+	--output_dir /home/jovyan/zhubin/code/LLaMA-Factory/saved_output/ \
+	--per_device_eval_batch_size 4

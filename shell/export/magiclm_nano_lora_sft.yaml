@@ -1,0 +1,11 @@
+### model
+model_name_or_path: /home/jovyan/zhubin/DATA/models/honor2_5b_patched_tokenizer/
+adapter_name_or_path: /home/jovyan/zhubin/saved_checkpoint/less_top0.05_magiclm_nano_conv_sum_v2_lora_lr2e5_3epoch_bs4/
+template: honor
+finetuning_type: lora
+
+### export
+export_dir: /home/jovyan/zhubin/saved_checkpoint/less_top0.05_magiclm_nano_conv_sum_v2_lora_lr2e5_3epoch_bs4/merge/
+export_size: 2
+export_device: cpu
+export_legacy_format: false

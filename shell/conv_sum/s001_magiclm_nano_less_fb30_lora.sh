@@ -9,12 +9,13 @@ export DS_CONFIG_STAGE_2=${PROJECT_PATH}/config/deepspeed/zero_stage2_config.jso
 MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 
 ###运行训练时需要先进行配置
-export DATASET="alpace_gpt4_zh_retain,union_conversations_v2,cnewsum_5w,vcsum_headlines,\
+export DATASET="union_conversations_v2,cnewsum_5w,vcsum_headlines,\
 firefly_summary_part,COIG_PC_core_summary_part,\
 csl_9w,lcsts_5w,dialogsum,csds_dialogue,alimeeting,docsum"
 
 export WANDB_PROJECT="MagicLM_Nano"
-export WANDB_NAME="magiclm_nano_conv_sum_v2_full_lr2e5_3epoch_bs4"
+# wo_fb30 =without full baichuan_30
+export WANDB_NAME="exp001_less_wo_fb30_magiclm_nano_conv_sum_v2_full_lr2e5_3epoch_bs4"
 export OUTPUT_DIR=/home/jovyan/zhubin/saved_checkpoint/${WANDB_NAME}
 export HOSTFILE=/home/jovyan/zhubin/code/LLaMA-Factory/config/hostfile
 mkdir -p ${OUTPUT_DIR}
@@ -25,7 +26,7 @@ mkdir -p ${OUTPUT_DIR}
 # --include="node12:0,1,2,3,4,5,6,7"
 
 wandb offline
-deepspeed --hostfile=${HOSTFILE} --include="node9" --master_port=${MASTER_PORT} --no_local_rank \
+deepspeed --hostfile=${HOSTFILE} --include="node4" --master_port=${MASTER_PORT} --no_local_rank \
 	src/train.py \
 	--deepspeed ${DS_CONFIG_STAGE_2} \
 	--stage sft \
@@ -49,6 +50,7 @@ deepspeed --hostfile=${HOSTFILE} --include="node9" --master_port=${MASTER_PORT} 
 	--per_device_train_batch_size 4 \
 	--per_device_eval_batch_size 4 \
 	--preprocessing_num_workers 16 \
+	--gradient_accumulation_steps 8 \
 	--save_steps 5000 \
 	--save_total_limit 2 \
 	--learning_rate 2e-5 \
