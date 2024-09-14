@@ -42,17 +42,13 @@ export logging_steps=5
 export cutoff_len=4096
 export warmup_ratio=0.03
 # dpo parameter
-export pref_loss=simpo
-export pref_beta=0.1
-export simpo_gamma=0.5
+export pref_loss
+export pref_beta
 export ddp_timeout=180000000
-# neftune
-export neftune_noise_alpha
-
 
 options=$(getopt -l "help,do_train,do_eval,stage:,model_name_or_path:,name:,epochs:,lr:,batch_size:,template:,\
 finetuning_type:,dataset:,cutoff_len:,include:,resize_vocab:,gradient_accumulation_steps:,\
-pref_loss:,pref_beta:,simpo_gamma:,ddp_timeout:,neftune_noise_alpha:,\
+pref_loss:,pref_beta:,ddp_timeout:,\
 save_steps:,save_total_limit:,logging_steps:,warmup_ratio:,save_strategy:" -o "e:l:d:b:n:m:g:" -a -- "$@")
 
 eval set -- "$options"
@@ -146,14 +142,6 @@ while true; do
 		shift
 		pref_beta="$1"
 		;;
-	--simpo_gamma)
-		shift
-		simpo_gamma="$1"
-		;;
-	--neftune_noise_alpha)
-		shift
-		neftune_noise_alpha="$1"
-		;;
 	--resize_vocab)
 		shift
 		resize_vocab="$1"
@@ -165,14 +153,6 @@ while true; do
 	esac
 	shift
 done
-
-optional_params=()
-# 处理python脚本中default等于None的选项
-if [ ! $neftune_noise_alpha ]; then
-	echo "optinonal paramas neftune noise alpha is null"
-else
-	optional_params+=(--neftune_noise_alpha ${neftune_noise_alpha})
-fi
 
 export OUTPUT_DIR=/home/jovyan/zhubin/saved_checkpoint/$name
 export WANDB_DIR=$OUTPUT_DIR/logs
@@ -188,13 +168,11 @@ deepspeed --hostfile=${HOSTFILE} --include=${include} --master_port=${MASTER_POR
 	--stage ${stage} \
 	--pref_beta ${pref_beta} \
 	--pref_loss ${pref_loss} \
-	--simpo_gamma ${simpo_gamma} \
 	--template ${template} \
 	--do_train ${do_train} \
 	--do_eval ${do_eval} \
 	--model_name_or_path $model_name_or_path \
 	--resize_vocab true \
-	--neftune_noise_alpha ${neftune_noise_alpha} \
 	--use_fast_tokenizer false \
 	--report_to wandb \
 	--overwrite_output_dir \
@@ -218,5 +196,4 @@ deepspeed --hostfile=${HOSTFILE} --include=${include} --master_port=${MASTER_POR
 	--learning_rate ${lr} \
 	--ddp_timeout ${ddp_timeout}\
 	--bf16 true \
-	"${optional_params[@]}" \
 	2>&1 | tee ${OUTPUT_DIR}/train.log

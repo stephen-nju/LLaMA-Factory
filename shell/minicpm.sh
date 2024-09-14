@@ -12,12 +12,12 @@ EOF
 }
 
 export PROJECT_PATH=/home/jovyan/zhubin/code/LLaMA-Factory/
-export PYTHONPATH=/home/jovyan/zhubin/DATA/models/honor_2_5b_patched_tokenizer:$PYTHONPATH
+# export PYTHONPATH=/home/jovyan/zhubin/DATA/honor_2_5b_patched_tokenizer:$PYTHONPATH
 cd ${PROJECT_PATH}
 export PYTHONPATH=${PROJECT_PATH}
 export DS_CONFIG_STAGE_3=${PROJECT_PATH}/config/deepspeed/zero_stage3_config.json
 export DS_CONFIG_STAGE_2=${PROJECT_PATH}/config/deepspeed/zero_stage2_config.json
-export WANDB_PROJECT="MagicLM_Nano"
+export WANDB_PROJECT="MiniCPM"
 
 MASTER_PORT=$(shuf -n 1 -i 10000-65535)
 
@@ -31,7 +31,7 @@ export finetuning_type=full
 export batch_size=4
 export include="node1"
 export gradient_accumulation_steps=1
-export model_name_or_path=/home/jovyan/zhubin/DATA/models/honor2_5b_patched_tokenizer/
+export model_name_or_path=/home/jovyan/zhubin/DATA/models/openbmb/MiniCPM3-4B/
 export resize_vocab=true
 export save_strategy=step
 export save_steps=5000
@@ -49,6 +49,7 @@ export ddp_timeout=180000000
 # neftune
 export neftune_noise_alpha
 
+optional_params=()
 
 options=$(getopt -l "help,do_train,do_eval,stage:,model_name_or_path:,name:,epochs:,lr:,batch_size:,template:,\
 finetuning_type:,dataset:,cutoff_len:,include:,resize_vocab:,gradient_accumulation_steps:,\
@@ -166,7 +167,6 @@ while true; do
 	shift
 done
 
-optional_params=()
 # 处理python脚本中default等于None的选项
 if [ ! $neftune_noise_alpha ]; then
 	echo "optinonal paramas neftune noise alpha is null"
@@ -194,7 +194,6 @@ deepspeed --hostfile=${HOSTFILE} --include=${include} --master_port=${MASTER_POR
 	--do_eval ${do_eval} \
 	--model_name_or_path $model_name_or_path \
 	--resize_vocab true \
-	--neftune_noise_alpha ${neftune_noise_alpha} \
 	--use_fast_tokenizer false \
 	--report_to wandb \
 	--overwrite_output_dir \
@@ -216,7 +215,7 @@ deepspeed --hostfile=${HOSTFILE} --include=${include} --master_port=${MASTER_POR
 	--save_steps ${save_steps} \
 	--save_total_limit ${save_total_limit} \
 	--learning_rate ${lr} \
-	--ddp_timeout ${ddp_timeout}\
+	--ddp_timeout ${ddp_timeout} \
 	--bf16 true \
 	"${optional_params[@]}" \
 	2>&1 | tee ${OUTPUT_DIR}/train.log
