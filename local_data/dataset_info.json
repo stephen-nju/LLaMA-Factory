@@ -191,5 +191,24 @@
         "columns": {
             "messages": "conversations"
         }
-    }
+    },
+    "union_conv_v1_dpo": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/DPO/union_conversations_dpo_v1_train.json",
+        "ranking": true,
+        "columns": {
+          "prompt": "instruction",
+          "chosen": "chosen",
+          "rejected": "rejected"
+        }
+      },
+        "union_conv_v1_dpo_sample": {
+        "file_name":"/home/jovyan/zhubin/DATA/train_data/zb/DPO/union_conversations_dpo_v1_train_sample2k.json",
+        "ranking": true,
+        "columns": {
+          "prompt": "instruction",
+          "chosen": "chosen",
+          "rejected": "rejected"
+        }
+      }
+
 }
